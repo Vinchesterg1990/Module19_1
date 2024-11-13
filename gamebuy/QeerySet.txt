@@ -1,0 +1,19 @@
+py manage.py shell
+from task1.models import Game, Buyer
+Game.objects.all()
+Buyer.objects.create(name='Ivan', balance='5000', age='34')
+Buyer.objects.create(name='Evgenia', balance='2500', age='24')
+Buyer.objects.create(name='Sergei', balance='500', age='9')
+Game.objects.create(title='Starfield', cost='4700', size='14.9',
+                    description = 'Action-packed role-playing',
+                    age_limited=True)
+Game.objects.create(title='Phasmophobia', cost='2000', size='4.9',
+                    description = 'Horror', age_limited=True)
+Game.objects.create(title='Ведьмак 3', cost='1000', size='10.9',
+                    description = 'action/RPG', age_limited=True)
+first_buyer=Buyer.objects.get(id=1)
+second_buyer=Buyer.objects.get(id=2)
+third_buyer=Buyer.objects.get(id=3)
+Game.objects.get(id=1).buyer.set((first_buyer, second_buyer))
+Game.objects.get(id=2).buyer.set((second_buyer, third_buyer))
+Game.objects.get(id=3).buyer.set((first_buyer, second_buyer))
